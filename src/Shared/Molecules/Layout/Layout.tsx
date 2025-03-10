@@ -11,8 +11,6 @@ const layoutStyle: React.CSSProperties = {
   padding: "25px 2%",
   minWidth: "100%",
   width: "100%",
-  display: "flex",
-  flexWrap: "wrap",
 };
 export default function Layout({ children }: PropsWithChildren<LayoutProps>) {
   const isDark = useThemeStore((state) => state.isDark);
