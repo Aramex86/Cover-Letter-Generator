@@ -63,8 +63,12 @@ export default function Home() {
           />
 
           <Flex gap={10} style={{ marginBottom: 20 }} wrap>
-            <Button onClick={handleSetTemplate}>Select template 1</Button>
-            <Button onClick={handleSetTemplate}>Select template 2</Button>
+            <Button onClick={handleSetTemplate} type="primary">
+              Select template 1
+            </Button>
+            <Button onClick={handleSetTemplate} type="primary">
+              Select template 2
+            </Button>
           </Flex>
 
           <Flex gap={10} wrap>

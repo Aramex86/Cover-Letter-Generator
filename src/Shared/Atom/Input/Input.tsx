@@ -11,6 +11,7 @@ interface InputProps {
   rows?: number;
   value?: string;
   defaultValue?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export default function Input({
   label,
@@ -21,6 +22,7 @@ export default function Input({
   rows,
   value,
   defaultValue,
+  onChange,
 }: InputProps) {
   return (
     <ConfigProvider
@@ -48,6 +50,7 @@ export default function Input({
             placeholder={placeholder}
             size="large"
             value={value}
+            onChange={onChange}
           />
         ) : (
           <AppTextarea

@@ -38,6 +38,7 @@ export default function Preview({ form }: PreviewProps) {
   }, [finalTemplate, form]);
 
   const handleCopyToClipboard = () => {
+    const finalTemplate = form?.getFieldValue("output");
     navigator.clipboard.writeText(finalTemplate);
   };
   return (
@@ -53,6 +54,7 @@ export default function Preview({ form }: PreviewProps) {
           placeholder="Your output will go here..."
           type="textarea"
           autoSize
+          onChange={(e) => form?.setFieldsValue({ output: e.target.value })}
         />
       </Form.Item>
       <Button
