@@ -1,0 +1,18 @@
+import { Layout } from "antd";
+import { PropsWithChildren } from "react";
+
+const { Content: AppContent } = Layout;
+
+const contentStyle: React.CSSProperties = {
+  textAlign: "center",
+  minHeight: 120,
+  color: "#020202",
+  width: "50%",
+};
+
+interface ContentProps {
+  children: React.ReactNode;
+}
+export default function Content({ children }: PropsWithChildren<ContentProps>) {
+  return <AppContent style={contentStyle}>{children}</AppContent>;
+}
