@@ -2,11 +2,11 @@ import { useForm } from "antd/es/form/Form";
 import { Layout, Preview } from "../../Shared/Molecules";
 import { Button, Flex, Form } from "antd";
 import { Content, Input } from "../../Shared/Atom";
-import { getOpenAIResponse, templateOne, templateTwo } from "../../Entities";
+import { templateOne, templateTwo } from "../../Entities";
 import { useTemplateStore } from "../../Entities/TemplateStore/templateStore";
-// import { useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
 export default function Home() {
+  const navigate = useNavigate();
   const [form] = useForm();
   const template = useTemplateStore((state) => state.template);
   const setTemplate = useTemplateStore((state) => state.setTemplate);
@@ -17,30 +17,6 @@ export default function Home() {
       output: template,
     });
   };
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const response = await fetch(
-  //       "https://coverletter-ai.free.beeceptor.com/todos",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
-  //         },
-  //         body: JSON.stringify({
-  //           id: 25,
-  //           title: "Create a cover letter.",
-  //           completed: false,
-  //         }),
-  //       }
-  //     );
-  //     const data = await response.json();
-  //     console.log(data);
-  //   }
-
-  //   fetchData();
-  // }, []);
 
   return (
     <Form form={form}>
@@ -94,17 +70,20 @@ export default function Home() {
             <Button onClick={handleSetTemplate} type="primary">
               Select template 2
             </Button>
-          </Flex>
-
-          <Flex gap={10} wrap>
             <Button
-              onClick={() => console.log(form?.getFieldsValue(true))}
-              style={{ padding: "22px 10px" }}
-              type="primary"
-              disabled
+              onClick={() => navigate("/chat")}
+              type="default"
+              style={{
+                background: "#28a36a",
+                color: "#ffffff",
+                fontWeight: 500,
+              }}
             >
               Generate Cover Letter with AI
             </Button>
+          </Flex>
+
+          <Flex gap={10} wrap>
             <Button
               onClick={() => form?.resetFields()}
               style={{ padding: "22px 10px" }}
@@ -116,12 +95,6 @@ export default function Home() {
         </Content>
         <Content>
           <Preview form={form} />
-
-          <Input
-            name="aiTest"
-            type="input"
-            onChange={(e) => getOpenAIResponse(e.target.value)}
-          />
         </Content>
       </Layout>
     </Form>

@@ -3,6 +3,7 @@ import "./global.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import { Home } from "../Pages";
 import useThemeStore from "../Entities/ThemeStore/themeStore";
+import AiChatPage from "../Pages/AIChat";
 function App() {
   const { darkAlgorithm, defaultAlgorithm } = theme;
   const isDark = useThemeStore((state) => state.isDark);
@@ -16,6 +17,7 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="chat" element={<AiChatPage />} />
         </Routes>
       </ConfigProvider>
     </BrowserRouter>

@@ -12,7 +12,13 @@ const contentStyle: React.CSSProperties = {
 
 interface ContentProps {
   children: React.ReactNode;
+  styles?: React.CSSProperties;
 }
-export default function Content({ children }: PropsWithChildren<ContentProps>) {
-  return <AppContent style={contentStyle}>{children}</AppContent>;
+export default function Content({
+  children,
+  styles,
+}: PropsWithChildren<ContentProps>) {
+  return (
+    <AppContent style={{ ...contentStyle, ...styles }}>{children}</AppContent>
+  );
 }

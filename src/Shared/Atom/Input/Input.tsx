@@ -12,6 +12,7 @@ interface InputProps {
   value?: string;
   defaultValue?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  width?: string | number;
 }
 export default function Input({
   label,
@@ -23,6 +24,7 @@ export default function Input({
   value,
   defaultValue,
   onChange,
+  width,
 }: InputProps) {
   return (
     <ConfigProvider
@@ -43,6 +45,7 @@ export default function Input({
         name={name}
         labelCol={{ span: 24 }}
         initialValue={defaultValue}
+        noStyle={width ? true : false}
       >
         {type === "input" ? (
           <AppInput
@@ -51,6 +54,7 @@ export default function Input({
             size="large"
             value={value}
             onChange={onChange}
+            style={{ width }}
           />
         ) : (
           <AppTextarea
