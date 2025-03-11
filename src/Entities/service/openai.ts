@@ -1,5 +1,6 @@
 let count = 0;
 export default async function getOpenAIResponse(prompt: string) {
+  console.log(import.meta.env.VITE_GROCK_API_KEY, "VITE_GROCK_API_KEY");
   const response = await fetch(
     "https://api.groq.com/openai/v1/chat/completions",
     {
