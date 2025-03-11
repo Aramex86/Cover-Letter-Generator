@@ -17,6 +17,7 @@ export default function Home() {
       output: template,
     });
   };
+  console.log(import.meta.env.VITE_GROCK_API_KEY, "VITE_GROCK_API_KEY");
 
   return (
     <Form form={form}>

@@ -7,7 +7,6 @@ import AiChatPage from "../Pages/AIChat";
 function App() {
   const { darkAlgorithm, defaultAlgorithm } = theme;
   const isDark = useThemeStore((state) => state.isDark);
-  console.log(import.meta.env.VITE_GROCK_API_KEY, "VITE_GROCK_API_KEY");
 
   return (
     <BrowserRouter>
