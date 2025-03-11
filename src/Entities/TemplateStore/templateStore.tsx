@@ -9,3 +9,5 @@ export const useTemplateStore = create<TemplateState>((set) => ({
   template: "",
   setTemplate: (template: string) => set({ template }),
 }));
+
+export default useTemplateStore;

@@ -2,8 +2,9 @@ import { useForm } from "antd/es/form/Form";
 import { Layout, Preview } from "../../Shared/Molecules";
 import { Button, Flex, Form } from "antd";
 import { Content, Input } from "../../Shared/Atom";
-import { templateOne, templateTwo } from "../../Entities";
+import { getOpenAIResponse, templateOne, templateTwo } from "../../Entities";
 import { useTemplateStore } from "../../Entities/TemplateStore/templateStore";
+// import { useEffect } from "react";
 
 export default function Home() {
   const [form] = useForm();
@@ -16,6 +17,30 @@ export default function Home() {
       output: template,
     });
   };
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const response = await fetch(
+  //       "https://coverletter-ai.free.beeceptor.com/todos",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
+  //         },
+  //         body: JSON.stringify({
+  //           id: 25,
+  //           title: "Create a cover letter.",
+  //           completed: false,
+  //         }),
+  //       }
+  //     );
+  //     const data = await response.json();
+  //     console.log(data);
+  //   }
+
+  //   fetchData();
+  // }, []);
 
   return (
     <Form form={form}>
@@ -91,6 +116,12 @@ export default function Home() {
         </Content>
         <Content>
           <Preview form={form} />
+
+          <Input
+            name="aiTest"
+            type="input"
+            onChange={(e) => getOpenAIResponse(e.target.value)}
+          />
         </Content>
       </Layout>
     </Form>

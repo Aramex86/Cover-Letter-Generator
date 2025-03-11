@@ -1,5 +1,7 @@
 import { Button, ConfigProvider, Flex, Layout, Typography } from "antd";
-import useThemeStore from "../../../Entities/ThemeStore/themeStore";
+import LightMode from "../../assets/day-mode.png";
+import DarkMode from "../../assets/moon.png";
+import { useThemeStore } from "../../../Entities";
 
 const { Header: AppHeader } = Layout;
 
@@ -14,6 +16,12 @@ export default function Header() {
     root.setAttribute("data-theme", newTheme);
     setTheme();
   }
+
+  const themeIcon = isDark ? (
+    <img src={LightMode} alt="LightMode" className="theme-icon" />
+  ) : (
+    <img src={DarkMode} alt="LightMode" className="theme-icon" />
+  );
   return (
     <ConfigProvider
       theme={{
@@ -33,8 +41,8 @@ export default function Header() {
           <Typography style={{ fontWeight: 700 }}>
             Cover Letter Generator
           </Typography>
-          <Button onClick={toggleTheme}>
-            Theme {isDark ? "Light" : "Dark"}
+          <Button onClick={toggleTheme} className="theme-switch-btn">
+            {themeIcon}
           </Button>
         </Flex>
       </AppHeader>

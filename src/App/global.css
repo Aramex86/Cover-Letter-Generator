@@ -67,3 +67,8 @@ select {
   font: inherit;
   outline: none;
 }
+
+.theme-icon {
+  width: 25px;
+  height: 25px;
+}
