@@ -12,18 +12,16 @@ export default async function getOpenAIResponse(prompt: string) {
       body: JSON.stringify({
         model: "llama-3.3-70b-versatile",
         messages: [{ role: "user", content: prompt }],
-        max_tokens: 400,
       }),
     }
   );
 
   const data = await response.json();
-  console.log(data, "data");
+
   if (data) {
     count = count + 1;
   }
 
-  console.log(count, "count");
   return count <= 5
     ? data.choices[0]?.message.content.trim()
     : "Thank you! That's it for today?";
