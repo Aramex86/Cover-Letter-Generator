@@ -1,6 +1,6 @@
 import { Button, ConfigProvider, Flex, Layout, Typography } from "antd";
-import LightMode from "../../assets/day-mode.png";
-import DarkMode from "../../assets/moon.png";
+import { MdNightlightRound } from "react-icons/md";
+import { CiLight } from "react-icons/ci";
 import { useThemeStore } from "../../../Entities";
 
 const { Header: AppHeader } = Layout;
@@ -18,9 +18,12 @@ export default function Header() {
   }
 
   const themeIcon = isDark ? (
-    <img src={LightMode} alt="LightMode" className="theme-icon" />
+    <CiLight style={{ color: "#a94615" }} size={20} />
   ) : (
-    <img src={DarkMode} alt="LightMode" className="theme-icon" />
+    <MdNightlightRound
+      style={{ color: "yellow", transform: "rotate(-35deg)" }}
+      size={20}
+    />
   );
   return (
     <ConfigProvider

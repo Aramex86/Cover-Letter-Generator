@@ -1,4 +1,4 @@
-import { Button, Form, FormInstance, Typography } from "antd";
+import { Button, Flex, Form, FormInstance, Typography } from "antd";
 import { Input } from "../../Atom";
 import { useEffect } from "react";
 import { replaceTemplateVariables } from "../../libs";
@@ -57,13 +57,14 @@ export default function Preview({ form }: PreviewProps) {
           onChange={(e) => form?.setFieldsValue({ output: e.target.value })}
         />
       </Form.Item>
-      <Button
-        onClick={handleCopyToClipboard}
-        type="primary"
-        style={{ width: "100%" }}
-      >
-        Copy to clipboard
-      </Button>
+      <Flex gap={10} wrap>
+        <Button onClick={handleCopyToClipboard} type="primary">
+          Copy to clipboard
+        </Button>
+        <Button onClick={() => form?.resetFields()} type="primary">
+          Reset Form
+        </Button>
+      </Flex>
     </>
   );
 }

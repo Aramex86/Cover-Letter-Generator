@@ -3,19 +3,31 @@ import { Layout, Preview } from "../../Shared/Molecules";
 import { Button, Flex, Form } from "antd";
 import { Content, Input } from "../../Shared/Atom";
 import { templateOne, templateTwo } from "../../Entities";
+import { RiRobot2Line } from "react-icons/ri";
 import { useTemplateStore } from "../../Entities/TemplateStore/templateStore";
 import { useNavigate } from "react-router-dom";
+import useUserStore from "../../Entities/UserDataStore/userStore";
 export default function Home() {
   const navigate = useNavigate();
   const [form] = useForm();
   const template = useTemplateStore((state) => state.template);
   const setTemplate = useTemplateStore((state) => state.setTemplate);
+  const setUser = useUserStore((state) => state.setUser);
 
   const handleSetTemplate = () => {
     setTemplate(template === templateOne ? templateTwo : templateOne);
     form.setFieldsValue({
       output: template,
     });
+  };
+
+  const handleSetUserData = () => {
+    const { name, email, phone } = form.getFieldsValue([
+      "name",
+      "email",
+      "phone",
+    ]);
+    setUser({ name, email, phone });
   };
 
   return (
@@ -71,25 +83,19 @@ export default function Home() {
               Select template 2
             </Button>
             <Button
-              onClick={() => navigate("/chat")}
+              onClick={() => {
+                navigate("/chat");
+                handleSetUserData();
+              }}
               type="default"
               style={{
                 background: "#28a36a",
                 color: "#ffffff",
                 fontWeight: 500,
               }}
+              icon={<RiRobot2Line size={18} />}
             >
               Generate Cover Letter with AI
-            </Button>
-          </Flex>
-
-          <Flex gap={10} wrap>
-            <Button
-              onClick={() => form?.resetFields()}
-              style={{ padding: "22px 10px" }}
-              type="primary"
-            >
-              Reset Form
             </Button>
           </Flex>
         </Content>
