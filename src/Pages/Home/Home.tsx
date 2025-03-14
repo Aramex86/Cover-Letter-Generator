@@ -22,18 +22,45 @@ export default function Home() {
   };
 
   const handleSetUserData = () => {
-    const { name, email, phone } = form.getFieldsValue([
-      "name",
-      "email",
-      "phone",
-    ]);
-    setUser({ name, email, phone });
+    const { name, email, phone, companyName, role, stack } =
+      form.getFieldsValue([
+        "name",
+        "email",
+        "phone",
+        "companyName",
+        "role",
+        "stack",
+      ]);
+    setUser({ name, email, phone, companyName, role, stack });
   };
 
   return (
     <Form form={form}>
       <Layout>
         <Content>
+          <Flex gap={10} style={{ marginBottom: 20 }} wrap>
+            <Button onClick={handleSetTemplate} type="primary">
+              Select template 1
+            </Button>
+            <Button onClick={handleSetTemplate} type="primary">
+              Select template 2
+            </Button>
+            <Button
+              onClick={() => {
+                navigate("/chat");
+                handleSetUserData();
+              }}
+              type="default"
+              style={{
+                background: "#28a36a",
+                color: "#ffffff",
+                fontWeight: 500,
+              }}
+              icon={<RiRobot2Line size={18} />}
+            >
+              Generate Cover Letter with AI
+            </Button>
+          </Flex>
           <Input
             label="Your Name"
             name="name"
@@ -61,12 +88,13 @@ export default function Home() {
             placeholder="Acme Inc."
             type="input"
           />
-          <Input
+
+          {/* <Input
             label="Manager Name"
             name="manager"
             placeholder="Hiring Manager’s Name"
             type="input"
-          />
+          /> */}
 
           <Input
             label="Position"
@@ -74,32 +102,14 @@ export default function Home() {
             placeholder="Software Engineer"
             type="input"
           />
-
-          <Flex gap={10} style={{ marginBottom: 20 }} wrap>
-            <Button onClick={handleSetTemplate} type="primary">
-              Select template 1
-            </Button>
-            <Button onClick={handleSetTemplate} type="primary">
-              Select template 2
-            </Button>
-            <Button
-              onClick={() => {
-                navigate("/chat");
-                handleSetUserData();
-              }}
-              type="default"
-              style={{
-                background: "#28a36a",
-                color: "#ffffff",
-                fontWeight: 500,
-              }}
-              icon={<RiRobot2Line size={18} />}
-            >
-              Generate Cover Letter with AI
-            </Button>
-          </Flex>
+          <Input
+            label="Technology Stack"
+            name="stack"
+            placeholder="Enter your stack..."
+            type="input"
+          />
         </Content>
-        <Content>
+        <Content styles={{ marginTop: 50 }}>
           <Preview form={form} />
         </Content>
       </Layout>

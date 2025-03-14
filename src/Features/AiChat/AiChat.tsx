@@ -3,6 +3,9 @@ import { CardHeader, Content, Input } from "../../Shared/Atom";
 import { BiSolidPaperPlane } from "react-icons/bi";
 import { getOpenAIResponse, useUserStore } from "../../Entities";
 import { useForm } from "antd/es/form/Form";
+import { templateGenerationPrompt } from "../../Entities/model/model";
+import { useState } from "react";
+import { replaceTemplateVariables } from "../../Shared/libs";
 
 const gridStyleOptions: React.CSSProperties = {
   width: "20%",
@@ -15,19 +18,29 @@ const gridStyleChat: React.CSSProperties = {
   flexDirection: "column",
 };
 export default function AiChat() {
+  const [chatInput, setChatInput] = useState<string>("");
   const [form] = useForm();
   const user = useUserStore((state) => state.user);
   const addData = useUserStore((state) => state.additionalInfo);
 
   const handleSelectTemplate = () => {
-    console.log(form.getFieldsValue(true));
-    console.log(user, "User");
     addData(form.getFieldsValue(true));
+    form.setFieldsValue({
+      company: user.companyName,
+      role: user.role,
+      stack: user.stack,
+    });
+    setChatInput(templateGenerationPrompt);
   };
 
   const handleSubmit = async () => {
-    const input = form.getFieldValue("message");
-    const result = await getOpenAIResponse(input);
+    const templateValues = {
+      ...user,
+    };
+
+    const result = await getOpenAIResponse(
+      replaceTemplateVariables(chatInput, templateValues, true)
+    );
     form.setFieldsValue({ response: result });
     form.resetFields(["message"]);
   };
@@ -36,8 +49,12 @@ export default function AiChat() {
       <Content>
         <Card title={<CardHeader />}>
           <Card.Grid style={gridStyleOptions}>
-            <Typography>Options</Typography>
-            <Button onClick={handleSelectTemplate}>Use your data</Button>
+            <Typography style={{ fontSize: 25, marginBottom: 30 }}>
+              Options
+            </Typography>
+            <Button onClick={handleSelectTemplate} style={{ marginBottom: 30 }}>
+              Use your previous filed data
+            </Button>
             <Input
               type="input"
               name="stack"
@@ -50,21 +67,25 @@ export default function AiChat() {
               label="Company"
               placeholder="Company Name..."
             />
-            <Input
-              type="input"
-              name="manager"
-              label="Manager Name"
-              placeholder="Manager Name..."
-            />
+
             <Input
               type="input"
               name="role"
               label="Position"
               placeholder="Enter desire role..."
             />
+
+            <Button
+              type="primary"
+              onClick={() =>
+                navigator.clipboard.writeText(form.getFieldValue("response"))
+              }
+            >
+              Copy to clipboard the response
+            </Button>
           </Card.Grid>
           <Card.Grid style={gridStyleChat}>
-            <pre>{JSON.stringify(user)}</pre>
+            {/* <pre>{JSON.stringify(user)}</pre> */}
             <Input
               type="textarea"
               name="response"
@@ -81,18 +102,19 @@ export default function AiChat() {
                 justifyContent: "center",
               }}
             >
-              <Input
+              {/* <Input
                 name="message"
                 placeholder="Type your message..."
                 type="textarea"
                 width="90%"
                 rows={4}
-              />
+              /> */}
               <Button
                 type="primary"
                 onClick={handleSubmit}
-                style={{ alignSelf: "flex-end" }}
+                style={{ width: "100%", padding: "20px 0" }}
               >
+                Generate cover letter
                 <BiSolidPaperPlane size={24} />
               </Button>
             </Content>

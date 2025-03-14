@@ -8,20 +8,20 @@ interface TemplateState {
 }
 
 export const useTemplateStore = create<TemplateState>()(
-  devtools((set, get) => ({
+  devtools((set) => ({
     template: "",
-    userData: [{ name: "Slava" }],
+    // userData: [{ name: "Slava" }],
     setTemplate: (template: string) => set({ template }),
-    predefined: () =>
-      set(
-        (state) => ({
-          template: state.userData
-            .map((user) => get().template.replace("{{name}}", user.name))
-            .join(", "),
-        }),
-        undefined,
-        "predefined/useTemplate"
-      ),
+    // predefined: () =>
+    //   set(
+    //     (state) => ({
+    //       template: state.userData
+    //         .map((user) => get().template.replace("{{name}}", user.name))
+    //         .join(", "),
+    //     }),
+    //     undefined,
+    //     "predefined/useTemplate"
+    //   ),
   }))
 );
 

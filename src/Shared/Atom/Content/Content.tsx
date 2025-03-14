@@ -13,12 +13,16 @@ const contentStyle: React.CSSProperties = {
 interface ContentProps {
   children: React.ReactNode;
   styles?: React.CSSProperties;
+  className?: string;
 }
 export default function Content({
   children,
   styles,
+  className,
 }: PropsWithChildren<ContentProps>) {
   return (
-    <AppContent style={{ ...contentStyle, ...styles }}>{children}</AppContent>
+    <AppContent style={{ ...contentStyle, ...styles }} className={className}>
+      {children}
+    </AppContent>
   );
 }

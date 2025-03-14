@@ -16,6 +16,7 @@ export default function Preview({ form }: PreviewProps) {
   const company = Form.useWatch("companyName", form) || "{{company}}";
   const manager = Form.useWatch("manager", form) || "{{manager}}";
   const role = Form.useWatch("role", form) || "{{role}}";
+  const stack = Form.useWatch("stack", form) || "{{stack}}";
 
   const templateValues = {
     name: userName,
@@ -24,6 +25,7 @@ export default function Preview({ form }: PreviewProps) {
     company,
     manager,
     role,
+    stack,
     date: `${new Date().toLocaleString("default", {
       month: "long",
     })} ${new Date().getDate()} , ${new Date().getFullYear()}`,
@@ -53,7 +55,7 @@ export default function Preview({ form }: PreviewProps) {
           name="output"
           placeholder="Your output will go here..."
           type="textarea"
-          autoSize
+          rows={22}
           onChange={(e) => form?.setFieldsValue({ output: e.target.value })}
         />
       </Form.Item>

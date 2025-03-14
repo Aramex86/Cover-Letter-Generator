@@ -2,12 +2,15 @@ import { Button, ConfigProvider, Flex, Layout, Typography } from "antd";
 import { MdNightlightRound } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 import { useThemeStore } from "../../../Entities";
+import { googleLogout } from "@react-oauth/google";
+import { useAuth } from "../../../App/useAuth";
 
 const { Header: AppHeader } = Layout;
 
 export default function Header() {
   const isDark = useThemeStore((state) => state.isDark);
   const setTheme = useThemeStore((state) => state.setTheme);
+  const { setUser, setToken } = useAuth();
 
   function toggleTheme() {
     const root = document.documentElement;
@@ -25,6 +28,12 @@ export default function Header() {
       size={20}
     />
   );
+
+  const handleLogout = () => {
+    setUser({});
+    setToken("");
+    googleLogout();
+  };
   return (
     <ConfigProvider
       theme={{
@@ -47,6 +56,7 @@ export default function Header() {
           <Button onClick={toggleTheme} className="theme-switch-btn">
             {themeIcon}
           </Button>
+          <Button onClick={handleLogout}>Log Out</Button>
         </Flex>
       </AppHeader>
     </ConfigProvider>

@@ -1,8 +1,11 @@
 const replaceTemplateVariables = (
   template: string,
-  values: Record<string, string>
+  values: Record<string, string>,
+  flag?: boolean
 ) => {
-  return template.replace(/\{\{(\w+)\}\}/g, (_, key) => values[key] || "");
+  return flag
+    ? template.replace("{{user}}", JSON.stringify(values))
+    : template.replace(/\{\{(\w+)\}\}/g, (_, key) => values[key] || "");
 };
 
 export default replaceTemplateVariables;
