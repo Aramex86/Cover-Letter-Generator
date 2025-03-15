@@ -4,3 +4,4 @@ export { default as useThemeStore } from "./ThemeStore/themeStore";
 export { default as useTemplateStore } from "./TemplateStore/templateStore";
 export { default as getOpenAIResponse } from "./service/openai";
 export { default as useUserStore } from "./UserDataStore/userStore";
+export { default as useGoogleAuth } from "./hooks/useGoogleAuth";

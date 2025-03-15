@@ -1,37 +1,40 @@
 import { Button, Typography } from "antd";
 import { Content } from "../../Shared/Atom";
 import { FaGoogle } from "react-icons/fa";
-import { useGoogleLogin } from "@react-oauth/google";
-import { useAuth } from "../../App/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useGoogleAuth } from "../../Entities";
+import { useMediaQuery } from "../../Shared/hooks";
 
 export default function LoginPage() {
-  const navigate = useNavigate();
-  const { setUser, setToken } = useAuth();
+  const { login } = useGoogleAuth();
+  const isTablet = useMediaQuery("(max-width: 768px)");
+  const isMobile = useMediaQuery("(max-width: 600px)");
 
-  const login = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      // Use the token to fetch user data
-      setToken(tokenResponse.access_token);
+  const responsive = isMobile ? "80%" : isTablet ? "60%" : "50%";
+  const responsiveBtn = isMobile ? "80%" : "50%";
 
-      fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
-        headers: {
-          Authorization: `Bearer ${tokenResponse.access_token}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setUser(data);
-          navigate("/home");
-        })
-        .catch((error) => {
-          console.error("Error fetching user data:", error);
-        });
-    },
-    onError: (error) => {
-      console.error("Login Failed:", error);
-    },
-  });
+  // const login = useGoogleLogin({
+  //   onSuccess: (tokenResponse) => {
+  //     // Use the token to fetch user data
+  //     setToken(tokenResponse.access_token);
+
+  //     fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
+  //       headers: {
+  //         Authorization: `Bearer ${tokenResponse.access_token}`,
+  //       },
+  //     })
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         setUser(data);
+  //         navigate("/home");
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error fetching user data:", error);
+  //       });
+  //   },
+  //   onError: (error) => {
+  //     console.error("Login Failed:", error);
+  //   },
+  // });
 
   return (
     <Content
@@ -49,7 +52,7 @@ export default function LoginPage() {
       <Content
         styles={{
           background: "#ffffff ",
-          width: "40%",
+          width: responsive,
           flex: "none",
           borderRadius: "15px",
           display: "flex",
@@ -66,7 +69,7 @@ export default function LoginPage() {
           style={{
             margin: "0 auto ",
             marginTop: 30,
-            width: "50%",
+            width: responsiveBtn,
             background: "#ffffff",
             color: "#000000",
             padding: "20px",

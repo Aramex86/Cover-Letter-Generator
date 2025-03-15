@@ -8,7 +8,7 @@ export default function CardHeader() {
   const setUser = useUserStore((state) => state.setUser);
 
   const handleBack = () => {
-    navigate("/home");
+    navigate("/");
     setUser({});
   };
   return (

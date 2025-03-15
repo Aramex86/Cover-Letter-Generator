@@ -1,29 +1,28 @@
 import { ConfigProvider, theme } from "antd";
 import "./global.css";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { Route, Routes } from "react-router";
 import { Home, Login, AIChatPage } from "../Pages";
 import useThemeStore from "../Entities/ThemeStore/themeStore";
-import { AuthProvider } from "./AuthContext";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   const { darkAlgorithm, defaultAlgorithm } = theme;
   const isDark = useThemeStore((state) => state.isDark);
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <ConfigProvider
-          theme={{
-            algorithm: isDark ? defaultAlgorithm : darkAlgorithm,
-          }}
-        >
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="chat" element={<AIChatPage />} />
-          </Routes>
-        </ConfigProvider>
-      </AuthProvider>
-    </BrowserRouter>
+    <ConfigProvider
+      theme={{
+        algorithm: isDark ? defaultAlgorithm : darkAlgorithm,
+      }}
+    >
+      <Routes>
+        <Route element={<PrivateRoute />}>
+          <Route path="/" element={<Home />} />
+          <Route path="chat" element={<AIChatPage />} />
+        </Route>
+
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </ConfigProvider>
   );
 }
 

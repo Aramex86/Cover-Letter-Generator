@@ -1,16 +1,14 @@
 import { Button, ConfigProvider, Flex, Layout, Typography } from "antd";
 import { MdNightlightRound } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
-import { useThemeStore } from "../../../Entities";
-import { googleLogout } from "@react-oauth/google";
-import { useAuth } from "../../../App/useAuth";
+import { useGoogleAuth, useThemeStore } from "../../../Entities";
 
 const { Header: AppHeader } = Layout;
 
 export default function Header() {
   const isDark = useThemeStore((state) => state.isDark);
   const setTheme = useThemeStore((state) => state.setTheme);
-  const { setUser, setToken } = useAuth();
+  const { handleLogout } = useGoogleAuth();
 
   function toggleTheme() {
     const root = document.documentElement;
@@ -29,11 +27,6 @@ export default function Header() {
     />
   );
 
-  const handleLogout = () => {
-    setUser({});
-    setToken("");
-    googleLogout();
-  };
   return (
     <ConfigProvider
       theme={{
@@ -53,10 +46,12 @@ export default function Header() {
           <Typography style={{ fontWeight: 700 }}>
             Cover Letter Generator
           </Typography>
-          <Button onClick={toggleTheme} className="theme-switch-btn">
-            {themeIcon}
-          </Button>
-          <Button onClick={handleLogout}>Log Out</Button>
+          <div style={{ display: "flex", gap: 10 }}>
+            <Button onClick={toggleTheme} className="theme-switch-btn">
+              {themeIcon}
+            </Button>
+            <Button onClick={handleLogout}>Log Out</Button>
+          </div>
         </Flex>
       </AppHeader>
     </ConfigProvider>
