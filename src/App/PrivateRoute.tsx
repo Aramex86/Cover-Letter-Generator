@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useGoogleAuth } from "../Entities";
 import { useEffect, useState } from "react";
 import { Loader } from "../Shared/Atom";
@@ -28,7 +28,7 @@ const PrivateRoutes = () => {
     );
   }
 
-  return token ? <Outlet /> : <Navigate to="/login" />;
+  return token && <Outlet />;
 };
 
 export default PrivateRoutes;
