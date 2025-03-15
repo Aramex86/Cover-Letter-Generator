@@ -15,12 +15,11 @@ function App() {
       }}
     >
       <Routes>
+        <Route path="/login" element={<Login />} />
         <Route element={<PrivateRoute />}>
           <Route path="/" element={<Home />} />
           <Route path="chat" element={<AIChatPage />} />
         </Route>
-
-        <Route path="/login" element={<Login />} />
       </Routes>
     </ConfigProvider>
   );
