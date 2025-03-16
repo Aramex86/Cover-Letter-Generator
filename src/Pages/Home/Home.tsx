@@ -36,7 +36,7 @@ export default function Home() {
 
   return (
     <Form form={form}>
-      <Layout>
+      <Layout styles={{ display: "flex", gap: 20, flexDirection: "row" }}>
         <Content>
           <Flex gap={10} style={{ marginBottom: 20 }} wrap>
             <Button onClick={handleSetTemplate} type="primary">

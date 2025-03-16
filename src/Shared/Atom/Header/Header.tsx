@@ -1,31 +1,13 @@
-import { Button, ConfigProvider, Flex, Layout, Typography } from "antd";
-import { MdNightlightRound } from "react-icons/md";
-import { CiLight } from "react-icons/ci";
-import { useGoogleAuth, useThemeStore } from "../../../Entities";
+import { ConfigProvider, Flex, Layout, Skeleton, Typography } from "antd";
+import { Avatar } from "../Avatar";
+import { useNavigate } from "react-router-dom";
+import { useFetchUserDetail } from "../../../Entities/hooks";
 
 const { Header: AppHeader } = Layout;
 
 export default function Header() {
-  const isDark = useThemeStore((state) => state.isDark);
-  const setTheme = useThemeStore((state) => state.setTheme);
-  const { handleLogout } = useGoogleAuth();
-
-  function toggleTheme() {
-    const root = document.documentElement;
-    const newTheme = isDark ? "light" : "dark";
-
-    root.setAttribute("data-theme", newTheme);
-    setTheme();
-  }
-
-  const themeIcon = isDark ? (
-    <CiLight style={{ color: "#a94615" }} size={20} />
-  ) : (
-    <MdNightlightRound
-      style={{ color: "yellow", transform: "rotate(-35deg)" }}
-      size={20}
-    />
-  );
+  const navigate = useNavigate();
+  const { user, isFetching } = useFetchUserDetail();
 
   return (
     <ConfigProvider
@@ -46,12 +28,16 @@ export default function Header() {
           <Typography style={{ fontWeight: 700 }}>
             Cover Letter Generator
           </Typography>
-          <div style={{ display: "flex", gap: 10 }}>
-            <Button onClick={toggleTheme} className="theme-switch-btn">
-              {themeIcon}
-            </Button>
-            <Button onClick={handleLogout}>Log Out</Button>
-          </div>
+          {isFetching ? (
+            <Skeleton.Avatar active size={42} shape="circle" />
+          ) : (
+            <Avatar
+              onClick={() => navigate("/profile")}
+              src={user?.picture}
+              title={user.name}
+              // icon={<FaRegCircleUser />}
+            />
+          )}
         </Flex>
       </AppHeader>
     </ConfigProvider>

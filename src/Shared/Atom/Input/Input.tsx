@@ -13,6 +13,7 @@ interface InputProps {
   defaultValue?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   width?: string | number;
+  disabled?: boolean;
 }
 export default function Input({
   label,
@@ -24,7 +25,8 @@ export default function Input({
   value,
   defaultValue,
   onChange,
-  width,
+  width = "100%",
+  disabled,
 }: InputProps) {
   return (
     <ConfigProvider
@@ -45,7 +47,7 @@ export default function Input({
         name={name}
         labelCol={{ span: 24 }}
         initialValue={defaultValue}
-        noStyle={width ? true : false}
+        style={{ width }}
       >
         {type === "input" ? (
           <AppInput
@@ -55,6 +57,7 @@ export default function Input({
             value={value}
             onChange={onChange}
             style={{ width }}
+            disabled={disabled}
           />
         ) : (
           <AppTextarea
@@ -63,6 +66,7 @@ export default function Input({
             size="large"
             autoSize={rows ? { minRows: rows, maxRows: rows } : autoSize}
             value={value}
+            style={{ width }}
           />
         )}
       </Form.Item>
