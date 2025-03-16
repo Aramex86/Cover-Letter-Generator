@@ -16,7 +16,7 @@ export default function useGoogleAuth() {
     },
     onError: () => {
       console.error("Login Failed");
-      // navigate("/login");
+      navigate("/login");
     },
   });
 
@@ -29,7 +29,7 @@ export default function useGoogleAuth() {
 
   const handleLogout = () => {
     googleLogout();
-    sessionStorage.removeItem("google_token"); // Remove token on logout
+    sessionStorage.removeItem("google_token");
     logout();
   };
 

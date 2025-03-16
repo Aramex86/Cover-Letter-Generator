@@ -4,30 +4,44 @@ import { Avatar, Content, Input } from "../../Shared/Atom";
 import { useFetchUserDetail } from "../../Entities/hooks";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { Layout } from "../../Shared/Molecules";
+import { IoIosArrowBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "../../Shared/hooks";
 
 export default function ProfilePage() {
+  const isMobile = useMediaQuery("(max-width: 600px)");
+  const navigate = useNavigate();
   const { user } = useFetchUserDetail();
+  const handleBack = () => {
+    navigate("/");
+  };
 
   return (
     <Layout>
       <Content
         styles={{
-          width: "80%",
+          width: isMobile ? "100%" : "80%",
           margin: "0 auto",
           display: "flex",
           alignContent: "center",
           flexDirection: "column",
         }}
       >
-        <Row justify="start">
+        <Row
+          justify="start"
+          style={{
+            background: "#3b82f6",
+            padding: 15,
+            marginBottom: 20,
+            borderRadius: "10px 10px 0px 0px",
+          }}
+        >
           <Col span={2}>
             <Avatar
-              src={
-                "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-              }
+              src={user?.picture}
               icon={<FaRegCircleUser />}
               title=""
-              size={100}
+              size={isMobile ? 60 : 100}
             />
           </Col>
           <Col
@@ -36,18 +50,32 @@ export default function ProfilePage() {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "flex-start",
-              marginLeft: 20,
+              marginLeft: isMobile ? 40 : 20,
             }}
           >
-            <Typography style={{ fontSize: 25, fontWeight: 700 }}>
+            <Typography
+              style={{ fontSize: isMobile ? 20 : 25, fontWeight: 700 }}
+            >
               {user?.name}
             </Typography>
             <Typography style={{ fontSize: 18 }}>{user?.email}</Typography>
           </Col>
         </Row>
+        <Button
+          type="primary"
+          onClick={handleBack}
+          icon={<IoIosArrowBack />}
+          style={{
+            width: 100,
+            marginBottom: 20,
+            padding: `${isMobile && "20px 20px"}`,
+          }}
+        >
+          Back
+        </Button>
         <Row style={{ marginTop: 30 }} justify="start">
           <Col
-            span={15}
+            span={isMobile ? 24 : 15}
             style={{
               textAlign: "left",
               display: "flex",
@@ -120,12 +148,6 @@ export default function ProfilePage() {
                 />
               </div>
               <Input type="textarea" placeholder="Bio" name="bio" rows={6} />
-              <Button
-                type="primary"
-                style={{ padding: 20, fontWeight: 600, fontSize: 16 }}
-              >
-                Save Changes
-              </Button>
             </Content>
           </Col>
         </Row>
@@ -154,9 +176,17 @@ export default function ProfilePage() {
             style={{
               paddingLeft: 20,
               width: "100%",
+              display: "flex",
+              gap: 20,
             }}
           >
-            <Logout />
+            <Button
+              type="primary"
+              style={{ padding: 20, fontWeight: 600, fontSize: 16 }}
+            >
+              Save Changes
+            </Button>
+            <Logout width={150} />
           </Col>
         </Row>
       </Content>

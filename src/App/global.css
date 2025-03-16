@@ -138,3 +138,7 @@ select {
     transform: rotate(360deg);
   }
 }
+
+.ant-segmented-item-label {
+  font-size: 24px !important;
+}

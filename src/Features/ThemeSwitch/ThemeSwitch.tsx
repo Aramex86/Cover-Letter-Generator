@@ -22,7 +22,9 @@ export default function ThemeSwitch() {
       options={[
         {
           value: "light",
-          icon: <CiLight style={{ color: "#a94615" }} size={20} />,
+          icon: (
+            <CiLight style={{ color: "#a94615", marginTop: 2 }} size={20} />
+          ),
         },
         {
           value: "dark",
