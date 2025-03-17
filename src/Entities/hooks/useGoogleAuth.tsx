@@ -14,7 +14,7 @@ export default function useGoogleAuth() {
       console.log(response, "response");
       navigate("/");
     },
-    onError: (e) => {
+    onError: () => {
       console.error("Login Failed");
       navigate("/login");
     },
