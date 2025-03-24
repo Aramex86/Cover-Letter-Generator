@@ -31,16 +31,6 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-@media screen and (orientation: landscape) {
-  body {
-    transform: rotate(90deg);
-    width: 100vh;
-    height: 100vw;
-    overflow: hidden;
-    position: fixed;
-  }
-}
-
 button,
 input,
 textarea,
