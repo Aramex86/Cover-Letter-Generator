@@ -1,36 +1,23 @@
-import { Button, Typography } from "antd";
-// import { Content } from "../../Shared/Atom";
+import { Button, Layout, Typography } from "antd";
 import { FcGoogle } from "react-icons/fc";
-import { useGoogleAuth } from "../../Entities";
-// import { useMediaQuery } from "../../Shared/hooks";
-import { SlEnvolopeLetter } from "react-icons/sl";
-import { Layout } from "antd";
-import styles from "./LoginPage.module.css";
-import { IoChevronForward } from "react-icons/io5";
 import { GiCheckMark } from "react-icons/gi";
+import { IoChevronForward } from "react-icons/io5";
 import { LuDot } from "react-icons/lu";
+import { SlEnvolopeLetter } from "react-icons/sl";
+import { useGoogleAuth } from "../../Entities";
 import UnderlineSVG from "../../Shared/assets/UnderlineSVG";
+import styles from "./LoginPage.module.css";
 
 const { Header, Content } = Layout;
 export default function LoginPage() {
   const { login } = useGoogleAuth();
-  // const isTablet = useMediaQuery("(max-width: 768px)");
-  // const isMobile = useMediaQuery("(max-width: 600px)");
-
-  // const responsive = isMobile ? "80%" : isTablet ? "60%" : "50%";
-  // const responsiveBtn = isMobile ? "80%" : "50%";
-
   return (
     <Layout className={styles.loginPage}>
       <Header className={styles.loginHeader}>
         <div className="container">
           <div className={styles.loginHeaderContent}>
             <Typography className={styles.loginLogo}>
-              <SlEnvolopeLetter
-                // size={isMobile ? 40 : 30}
-                style={{ marginRight: 15 }}
-              />
-              {/* {isMobile ? "" : "Cover Letter Generator"} */}
+              <SlEnvolopeLetter style={{ marginRight: 15 }} />
               <span>Cover Letter Generator</span>
             </Typography>
             <Button className={styles.loginBtn} onClick={() => login()}>

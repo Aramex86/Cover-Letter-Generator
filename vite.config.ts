@@ -7,4 +7,9 @@ export default defineConfig({
   server: {
     cors: true,
   },
+  css: {
+    modules: {
+      scopeBehaviour: "local",
+    },
+  },
 });

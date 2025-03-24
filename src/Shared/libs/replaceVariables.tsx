@@ -1,13 +1,16 @@
 const replaceTemplateVariables = (
   template: string,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  //! fix any type
-  values: Record<string, string> | any,
+
+  values: Record<string, string> | unknown,
   flag?: boolean
 ) => {
   return flag
     ? template.replace("{{user}}", JSON.stringify(values))
-    : template.replace(/\{\{(\w+)\}\}/g, (_, key) => values[key] || "");
+    : template.replace(/\{\{(\w+)\}\}/g, (_, key) =>
+        typeof values === "object" && values !== null && key in values
+          ? (values as Record<string, string>)[key]
+          : ""
+      );
 };
 
 export default replaceTemplateVariables;
