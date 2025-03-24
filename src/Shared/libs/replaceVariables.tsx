@@ -1,6 +1,8 @@
 const replaceTemplateVariables = (
   template: string,
-  values: Record<string, string>,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  //! fix any type
+  values: Record<string, string> | any,
   flag?: boolean
 ) => {
   return flag
