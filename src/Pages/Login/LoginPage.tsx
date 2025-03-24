@@ -6,7 +6,7 @@ import { LuDot } from "react-icons/lu";
 import { SlEnvolopeLetter } from "react-icons/sl";
 import { useGoogleAuth } from "../../Entities";
 import UnderlineSVG from "../../Shared/assets/UnderlineSVG";
-import styles from "./LoginPage.module.css";
+import styles from "./login-page.module.css";
 
 const { Header, Content } = Layout;
 export default function LoginPage() {
