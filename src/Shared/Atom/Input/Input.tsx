@@ -14,6 +14,7 @@ interface InputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   width?: string | number;
   disabled?: boolean;
+  mask?: string;
 }
 export default function Input({
   label,
@@ -56,7 +57,7 @@ export default function Input({
             size="large"
             value={value}
             onChange={onChange}
-            style={{ width }}
+            // style={{ width }}
             disabled={disabled}
           />
         ) : (

@@ -7,13 +7,18 @@ import { RiRobot2Line } from "react-icons/ri";
 import { useTemplateStore } from "../../Entities/TemplateStore/templateStore";
 import { useNavigate } from "react-router-dom";
 import useUserStore from "../../Entities/UserDataStore/userStore";
+import { useGetUserById } from "../../Entities/hooks";
 export default function Home() {
   const navigate = useNavigate();
   const [form] = useForm();
   const template = useTemplateStore((state) => state.template);
   const setTemplate = useTemplateStore((state) => state.setTemplate);
   const setUser = useUserStore((state) => state.setUser);
+  // const user = useUserStore((state) => state.user);
 
+  useGetUserById();
+
+  // console.log(user, "user");
   const handleSetTemplate = () => {
     setTemplate(template === templateOne ? templateTwo : templateOne);
     form.setFieldsValue({
@@ -61,40 +66,13 @@ export default function Home() {
               Generate Cover Letter with AI
             </Button>
           </Flex>
-          <Input
-            label="Your Name"
-            name="name"
-            placeholder="John Doe"
-            type="input"
-            defaultValue="Veaceslav Bezuşco"
-          />
-          <Input
-            label="Your Email"
-            name="email"
-            placeholder="john.doe@example.com"
-            type="input"
-            defaultValue="slavbez@gmail"
-          />
-          <Input
-            label="Your Phone"
-            name="phone"
-            placeholder="+1234567890"
-            type="input"
-            defaultValue="+373 62 169 030"
-          />
+
           <Input
             label="Company Name"
             name="companyName"
             placeholder="Acme Inc."
             type="input"
           />
-
-          {/* <Input
-            label="Manager Name"
-            name="manager"
-            placeholder="Hiring Manager’s Name"
-            type="input"
-          /> */}
 
           <Input
             label="Position"

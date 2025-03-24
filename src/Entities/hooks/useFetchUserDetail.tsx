@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUserStore } from "../UserDataStore";
 
 export default function useFetchUserDetail() {
-  const [user, setUser] = useState<Record<string, string>>({});
+  const [googleUser, setGoogleUser] = useState<Record<string, string>>({});
   const [isFetching, setIsFetching] = useState(false);
+  const { setUser } = useUserStore();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,6 +25,7 @@ export default function useFetchUserDetail() {
           return response.json();
         })
         .then((data) => {
+          setGoogleUser(data);
           setUser(data);
           setIsFetching(false);
         })
@@ -31,7 +34,7 @@ export default function useFetchUserDetail() {
           setIsFetching(false);
         });
     }
-  }, []);
+  }, [navigate]);
 
-  return { user, setUser, isFetching };
+  return { googleUser, setGoogleUser, isFetching };
 }

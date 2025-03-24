@@ -1,0 +1,225 @@
+.loginLogo {
+  display: flex;
+  align-items: center;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 600px) {
+  .loginLogo span {
+    display: none;
+  }
+  .loginLogo svg {
+    font-size: 2rem;
+  }
+}
+
+.loginHeaderContent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.loginBtn {
+  background-color: #ffffff;
+  color: #2563eb;
+  font-weight: 500;
+  border: none;
+}
+
+.loginPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(130deg, #1a6ec4, #9333ea);
+}
+
+@media screen and (max-width: 768px) {
+  .loginContent {
+    justify-content: stretch;
+    padding-bottom: 30px;
+  }
+}
+
+.loginHeader {
+  width: 100%;
+  padding: 0;
+  padding-top: 20px;
+  background-color: transparent;
+}
+
+@media screen and (min-width: 1600px) {
+  .loginHeader {
+    position: fixed;
+    top: 0;
+  }
+}
+
+.loginContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  margin-top: 100px;
+}
+
+@media screen and (max-width: 768px) {
+  .loginContent {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto);
+    margin-top: 50px;
+  }
+}
+
+.heroIntro {
+  color: #ffffff;
+  font-size: 0.9rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  background: #fff3;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  width: 313px;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  grid-column: 1/1;
+  grid-row: 1/1;
+}
+
+@media screen and (max-width: 600px) {
+  .heroIntro {
+    margin-bottom: 25px;
+  }
+}
+
+.heroLoginForm {
+  display: grid;
+  grid-column: 2;
+  grid-row: 2/2;
+  align-items: center;
+  justify-items: end;
+}
+
+@media screen and (max-width: 768px) {
+  .heroLoginForm {
+    grid-column: 1;
+    grid-row: 4/5;
+    align-items: center;
+    justify-items: center;
+    margin-top: 30px;
+  }
+}
+
+.heroLoginFormContent {
+  padding: 65px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.534);
+  -webkit-backdrop-filter: blur(11px);
+  backdrop-filter: blur(11px);
+  border-radius: 15px;
+  width: 70%;
+}
+
+@media screen and (max-width: 600px) {
+  .heroLoginFormContent {
+    width: 100%;
+  }
+}
+
+.heroLoginFormContent h2 {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: #000000;
+}
+
+.heroLoginFormBtn {
+  background: #ffffff;
+  color: #000000;
+  width: 80%;
+  padding: 18px 0px;
+  border: none;
+  border-radius: 25px;
+}
+
+.heroDescription {
+  font-weight: 700;
+  grid-row: 2/2;
+  grid-column: 1/1;
+}
+
+.heroDescription h1 {
+  font-size: 3.7rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .heroDescription h1 {
+    font-size: 2rem;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .heroDescription h1 {
+    font-size: 3rem;
+  }
+}
+
+.heroDescription p {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  width: 78%;
+  color: #ffffffe6;
+}
+@media screen and (max-width: 600px) {
+  .heroDescription p {
+    width: 100%;
+  }
+}
+
+.heroDescription span {
+  position: relative;
+  margin-left: 18px;
+}
+
+.heroFooter {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  grid-column: 1/1;
+}
+
+.heroFooterBtn {
+  background: #ffffff;
+  color: #2563eb;
+  font-size: 1rem;
+  padding: 0px 32px;
+  line-height: 1.5rem;
+  height: 44px;
+  border: none;
+  width: clamp(150px, 250px, 100%);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.heroFooterFeatures {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .heroFooterFeatures {
+    font-size: 0.8rem;
+  }
+}

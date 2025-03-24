@@ -11,7 +11,6 @@ export default function useGoogleAuth() {
     onSuccess: (response) => {
       setToken(response.access_token);
       sessionStorage.setItem("google_token", response.access_token);
-      console.log(response, "response");
       navigate("/");
     },
     onError: () => {
