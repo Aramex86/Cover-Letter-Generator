@@ -4,6 +4,7 @@
   line-height: 2rem;
   font-size: 1.5rem;
   font-weight: 700;
+  color: #ffffff;
 }
 
 @media screen and (max-width: 600px) {
@@ -152,6 +153,7 @@
   font-weight: 700;
   grid-row: 2/2;
   grid-column: 1/1;
+  color: #ffffff;
 }
 
 .heroDescription h1 {
@@ -216,6 +218,7 @@
   gap: 5px;
   align-items: center;
   font-size: 1rem;
+  color: #ffffff;
 }
 
 @media screen and (max-width: 600px) {
