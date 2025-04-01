@@ -36,9 +36,11 @@
 
 .loginPage {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
+  min-width: 100%;
+  width: 100%;
   background: linear-gradient(130deg, #1a6ec4, #9333ea);
 }
 
@@ -54,15 +56,6 @@
   padding: 0;
   padding-top: 20px;
   background-color: transparent;
-  position: fixed;
-  top: 0;
-}
-
-@media screen and (min-width: 1600px) {
-  .loginHeader {
-    position: fixed;
-    top: 0;
-  }
 }
 
 .loginContent {
@@ -73,6 +66,13 @@
 }
 
 @media screen and (max-width: 768px) {
+  .loginContent {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto);
+    margin-top: 50px;
+  }
+}
+@media screen and (max-width: 600px) {
   .loginContent {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(5, auto);
@@ -178,6 +178,10 @@
 @media screen and (max-width: 600px) {
   .heroDescription h1 {
     font-size: 2rem;
+  }
+
+  .heroDescription svg {
+    display: none;
   }
 }
 @media screen and (min-width: 1600px) {
