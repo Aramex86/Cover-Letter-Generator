@@ -79,6 +79,11 @@
     margin-top: 50px;
   }
 }
+/* @media (max-width: 600px), screen and (orientation: landscape) {
+  .loginContent {
+    margin-top: 30px;
+  }
+} */
 
 .heroIntro {
   color: #ffffff;
@@ -112,9 +117,18 @@
   justify-items: end;
 }
 
+@media only screen and (max-width: 600px), only screen and (max-height: 600px) {
+  .heroLoginForm {
+    grid-column: 1 / -1;
+    grid-row: 5/5;
+    justify-items: center;
+    padding-bottom: 20px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .heroLoginForm {
-    grid-column: 1;
+    grid-column: 1/-1;
     grid-row: 4/5;
     align-items: center;
     justify-items: center;
@@ -169,6 +183,12 @@
   color: #ffffff;
 }
 
+@media only screen and (max-width: 600px), only screen and (max-height: 600px) {
+  .heroDescription {
+    grid-column: 1 / -1;
+  }
+}
+
 .heroDescription h1 {
   font-size: 3.7rem;
   font-weight: 700;
@@ -184,6 +204,7 @@
     display: none;
   }
 }
+
 @media screen and (min-width: 1600px) {
   .heroDescription h1 {
     font-size: 3rem;
@@ -247,5 +268,12 @@
 @media screen and (max-width: 600px) {
   .heroFooterFeatures {
     font-size: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 600px), only screen and (max-height: 600px) {
+  .heroFooter {
+    grid-column: 1 / -1;
+    margin-bottom: 20px;
   }
 }
