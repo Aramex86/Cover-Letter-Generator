@@ -23,6 +23,9 @@
 @media screen and (max-width: 600px) {
   .btnContainer {
     margin-bottom: 25px;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
   }
 }
 
@@ -54,4 +57,11 @@
 .outPutContainer {
   margin-top: 50px;
   width: 70%;
+}
+
+@media screen and (max-width: 600px) {
+  .outPutContainer {
+    width: 100%;
+    margin-top: 20px;
+  }
 }
