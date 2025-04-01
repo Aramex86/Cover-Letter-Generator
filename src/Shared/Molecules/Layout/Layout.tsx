@@ -6,6 +6,7 @@ import useThemeStore from "../../../Entities/ThemeStore/themeStore";
 interface LayoutProps {
   children?: React.ReactNode;
   styles?: React.CSSProperties;
+  className?: string;
 }
 
 const layoutStyle: React.CSSProperties = {
@@ -16,16 +17,17 @@ const layoutStyle: React.CSSProperties = {
 };
 export default function Layout({
   children,
-  styles,
+  className,
 }: PropsWithChildren<LayoutProps>) {
   const isDark = useThemeStore((state) => state.isDark);
   return (
     <>
       <Header />
       <AppLayout
+        className={className}
         style={{
           ...layoutStyle,
-          ...styles,
+
           backgroundColor: isDark ? "#ffffff" : "#020202",
         }}
       >

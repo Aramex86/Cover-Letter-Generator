@@ -1,0 +1,57 @@
+.homeLayout {
+  padding: 25px 2%;
+  min-width: 100%;
+  width: 100%;
+  min-height: calc(100vh - 64px);
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 600px) {
+  .homeLayout {
+    flex-direction: column;
+  }
+}
+
+.btnContainer {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .btnContainer {
+    margin-bottom: 25px;
+  }
+}
+
+.homeContent {
+  text-align: center;
+  min-height: 120px;
+  color: #020202;
+}
+
+@media screen and (max-width: 600px) {
+  .homeContent {
+    width: 100%;
+  }
+}
+
+.inputContainer {
+  color: #020202;
+  width: 100%;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .inputContainer {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+.outPutContainer {
+  margin-top: 50px;
+  width: 70%;
+}

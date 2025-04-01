@@ -1,6 +1,6 @@
 import { useForm } from "antd/es/form/Form";
 import { Layout, Preview } from "../../Shared/Molecules";
-import { Button, Flex, Form } from "antd";
+import { Button, Form } from "antd";
 import { Content, Input } from "../../Shared/Atom";
 import { templateOne, templateTwo } from "../../Entities";
 import { RiRobot2Line } from "react-icons/ri";
@@ -8,6 +8,7 @@ import { useTemplateStore } from "../../Entities/TemplateStore/templateStore";
 import { useNavigate } from "react-router-dom";
 import useUserStore from "../../Entities/UserDataStore/userStore";
 import { useGetUserById } from "../../Entities/hooks";
+import styles from "./home.module.css";
 export default function Home() {
   const navigate = useNavigate();
   const [form] = useForm();
@@ -41,9 +42,9 @@ export default function Home() {
 
   return (
     <Form form={form}>
-      <Layout styles={{ display: "flex", gap: 20, flexDirection: "row" }}>
-        <Content>
-          <Flex gap={10} style={{ marginBottom: 20 }} wrap>
+      <Layout className={styles.homeLayout}>
+        <Content className={styles.homeContent}>
+          <div className={styles.btnContainer}>
             <Button onClick={handleSetTemplate} type="primary">
               Select template 1
             </Button>
@@ -65,29 +66,31 @@ export default function Home() {
             >
               Generate Cover Letter with AI
             </Button>
-          </Flex>
+          </div>
 
-          <Input
-            label="Company Name"
-            name="companyName"
-            placeholder="Acme Inc."
-            type="input"
-          />
+          <div className={styles.inputContainer}>
+            <Input
+              label="Company Name"
+              name="companyName"
+              placeholder="Acme Inc."
+              type="input"
+            />
 
-          <Input
-            label="Position"
-            name="role"
-            placeholder="Software Engineer"
-            type="input"
-          />
-          <Input
-            label="Technology Stack"
-            name="stack"
-            placeholder="Enter your stack..."
-            type="input"
-          />
+            <Input
+              label="Position"
+              name="role"
+              placeholder="Software Engineer"
+              type="input"
+            />
+            <Input
+              label="Technology Stack"
+              name="stack"
+              placeholder="Enter your stack..."
+              type="input"
+            />
+          </div>
         </Content>
-        <Content styles={{ marginTop: 50 }}>
+        <Content className={styles.outPutContainer}>
           <Preview form={form} />
         </Content>
       </Layout>

@@ -55,7 +55,7 @@ export default function Preview({ form }: PreviewProps) {
           name="output"
           placeholder="Your output will go here..."
           type="textarea"
-          rows={22}
+          rows={18}
           onChange={(e) => form?.setFieldsValue({ output: e.target.value })}
         />
       </Form.Item>

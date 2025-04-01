@@ -28,6 +28,12 @@
   border: none;
 }
 
+.loginBtn:active,
+.loginBtn:hover {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
 .loginPage {
   display: flex;
   justify-content: center;
@@ -48,6 +54,8 @@
   padding: 0;
   padding-top: 20px;
   background-color: transparent;
+  position: fixed;
+  top: 0;
 }
 
 @media screen and (min-width: 1600px) {
@@ -149,6 +157,11 @@
   border-radius: 25px;
 }
 
+.heroLoginFormBtn:active,
+.heroLoginFormBtn:hover {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
 .heroDescription {
   font-weight: 700;
   grid-row: 2/2;
@@ -211,6 +224,12 @@
   font-weight: 500;
   display: flex;
   align-items: center;
+}
+
+.heroFooterBtn:active,
+.heroFooterBtn:hover {
+  background: #000000 !important;
+  color: #ffffff !important;
 }
 
 .heroFooterFeatures {
