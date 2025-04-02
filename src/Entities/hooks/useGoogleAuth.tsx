@@ -10,6 +10,7 @@ export default function useGoogleAuth() {
   const login = useGoogleLogin({
     onSuccess: (response) => {
       setToken(response.access_token);
+      console.log(response, "token");
       sessionStorage.setItem("google_token", response.access_token);
       navigate("/");
     },

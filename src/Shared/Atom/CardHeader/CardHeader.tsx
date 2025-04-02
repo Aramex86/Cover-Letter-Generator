@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FaFileAlt } from "react-icons/fa";
 import { useUserStore } from "../../../Entities";
 import { IoIosArrowBack } from "react-icons/io";
+import styles from "./card-header.module.css";
 export default function CardHeader() {
   const navigate = useNavigate();
   const setUser = useUserStore((state) => state.setUser);
@@ -12,12 +13,14 @@ export default function CardHeader() {
     setUser({});
   };
   return (
-    <Flex justify="space-between">
+    <Flex className={styles.cardHeaderContainer}>
       <Button type="primary" onClick={handleBack} icon={<IoIosArrowBack />}>
         Back
       </Button>
-      <Typography style={{ fontSize: 25 }}>Create Cover Letter</Typography>
-      <FaFileAlt style={{ fontSize: 25 }} />
+      <Typography className={styles.cardHeading}>
+        Create Cover Letter with AI
+      </Typography>
+      <FaFileAlt className={styles.cardHeadingIcon} />
     </Flex>
   );
 }

@@ -6,17 +6,8 @@ import { useForm } from "antd/es/form/Form";
 import { templateGenerationPrompt } from "../../Entities/model/model";
 import { useState } from "react";
 import { replaceTemplateVariables } from "../../Shared/libs";
+import styles from "./ai-chat.module.css";
 
-const gridStyleOptions: React.CSSProperties = {
-  width: "20%",
-  textAlign: "center",
-};
-const gridStyleChat: React.CSSProperties = {
-  width: "80%",
-  textAlign: "center",
-  display: "flex",
-  flexDirection: "column",
-};
 export default function AiChat() {
   const [chatInput, setChatInput] = useState<string>("");
   const [form] = useForm();
@@ -47,8 +38,8 @@ export default function AiChat() {
   return (
     <Form form={form} component={false}>
       <Content>
-        <Card title={<CardHeader />}>
-          <Card.Grid style={gridStyleOptions}>
+        <Card title={<CardHeader />} classNames={{ body: "my-card" }}>
+          <Card.Grid className={styles.gridStyleOptions}>
             <Typography style={{ fontSize: 25, marginBottom: 30 }}>
               Options
             </Typography>
@@ -84,7 +75,7 @@ export default function AiChat() {
               Copy to clipboard the response
             </Button>
           </Card.Grid>
-          <Card.Grid style={gridStyleChat}>
+          <Card.Grid className={styles.gridStyleChat}>
             {/* <pre>{JSON.stringify(user)}</pre> */}
             <Input
               type="textarea"

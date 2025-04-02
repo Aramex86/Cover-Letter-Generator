@@ -142,3 +142,9 @@ select {
     width: 90%;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .ant-card-head {
+    padding: 0 10px !important;
+  }
+}
